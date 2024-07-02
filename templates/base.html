@@ -1,127 +1,148 @@
 {% load static %}
-<html>
+<!DOCTYPE html>
+<html lang="en">
   <head>
-    <!-- basic -->
     <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <!-- mobile metas -->
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1" />
-    <!-- site metas -->
-    <title>About</title>
-    <meta name="keywords" content="" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-    <!-- bootstrap css -->
-    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}" />
-    <!-- style css -->
-    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
-    <!-- Responsive -->
-    <link rel="stylesheet" href="{% static 'css/responsive.css' %}" />
-    <!-- fevicon -->
-    <link rel="icon" href="{% static 'images/fevicon.png' %}" type="image/gif" />
-    <!-- font css -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet" />
-    <!-- Scrollbar Custom CSS -->
-    <link rel="stylesheet" href="{% static 'css/jquery.mCustomScrollbar.min.css' %}" />
-    <!-- Tweaks for older IEs -->
-    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/'css/font-awesome.css" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Cia Cafe</title>
+    <meta content="Enjoy freshly brewed coffee, artisanal pastries, and cozy workspaces with free Wi-Fi at Cia Cafe in Abadan. Perfect spot for friends and individuals to unwind." name="description" />
+    <meta content="Cia,Cafe,Coffee,Shop" name="keywords" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://themehdimsv.ir/" />
+    <!-- Favicons -->
+    <link href="{% static 'assets/img/favicon.png' %}" rel="icon" />
+    <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon" />
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet" />
+
+    <!-- Vendor CSS Files -->
+    <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet" />
+
+    <!-- Main CSS File -->
+    <link href="{% static 'assets/css/main.css' %}" rel="stylesheet" />
+
+    <!--   =======================================================
+  * Template Name: Append
+  * Template URL: https://bootstrapmade.com/append-bootstrap-website-template/
+  * Updated: Jun 29 2024 with Bootstrap v5.3.3
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ========================================================   -->
   </head>
-  <body>
-    <div class="header_section header_bg">
-      <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-          <a class="navbar-brand" href="index.html"><img src="{% static 'images/logo1.png' %}" /></a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ml-auto">
-              <li class="nav-item active">
-                <a class="nav-link" href="{% url 'website:index' %}">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'website:about' %}">About</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'website:coffees' %}">Coffees</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Blog</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'website:contact' %}">Contact</a>
-              </li>
-            </ul>
-            <form class="form-inline my-2 my-lg-0">
-              <div class="login_bt">
-                <ul>
-                  <li>
-                    <a href="#"><span class="user_icon"><i class="fa fa-user" aria-hidden="true"></i></span>Login</a>
-                  </li>
-                  <li>
-                    <a href="#"><i class="fa fa-search" aria-hidden="true"></i></a>
-                  </li>
-                </ul>
-              </div>
-            </form>
-          </div>
+  <body class="index-page">
+    <header id="header" class="header d-flex align-items-center fixed-top">
+      <div class="container-fluid position-relative d-flex align-items-center justify-content-between">
+        <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
+          <!-- Uncomment the line below if you also wish to use an image logo -->
+          <!-- <img src="{% static 'assets/img/logo.png' %}" alt=""> -->
+          <h1 class="sitename">Cia Cafe</h1><span>.</span>
+        </a>
+
+        <nav id="navmenu" class="navmenu">
+          <ul>
+            <li>
+              <a href="{% url 'website:index' %}" class="active">Home</a>
+            </li>
+            <li>
+              <a href="{% url 'website:about' %}">About</a>
+            </li>
+            <li>
+              <a href="blog.html">Blog</a>
+            </li>
+            <li>
+              <a href="{% url 'website:contact' %}">Contact</a>
+            </li>
+          </ul>
+          <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
         </nav>
+
+        <a class="btn-getstarted" href="index.html#about">Get Started</a>
       </div>
-    </div>
-    <!-- header section end -->
+    </header>
+
     {% block content %}
 
     {% endblock %}
-    <!-- footer section start -->
-    <div class="footer_section layout_padding margin_top90">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="footer_social_icon">
-              <ul>
-                <li>
-                  <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                </li>
-                <li>
-                  <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                </li>
-                <li>
-                  <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
-                </li>
-                <li>
-                  <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-                </li>
-              </ul>
+    <footer id="footer" class="footer position-relative light-background">
+      <div class="container footer-top">
+        <div class="row gy-4">
+          <div class="col-lg-5 col-md-12 footer-about">
+            <a href="{% url 'website:index'%}" class="logo d-flex align-items-center"><span class="sitename">Cia Cafe</span></a>
+            <p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita valies darta donna mare fermentum iaculis eu non diam phasellus.</p>
+            <div class="social-links d-flex mt-4">
+              <a href=""><i class="bi bi-twitter-x"></i></a>
+              <a href=""><i class="bi bi-facebook"></i></a>
+              <a href=""><i class="bi bi-instagram"></i></a>
+              <a href=""><i class="bi bi-linkedin"></i></a>
             </div>
-            <div class="location_text">
-              <ul>
-                <li>
-                  <a href="#"><i class="fa fa-phone" aria-hidden="true"></i><span class="padding_left_10">+01 1234567890</span></a>
-                </li>
-                <li>
-                  <a href="#"><i class="fa fa-envelope" aria-hidden="true"></i><span class="padding_left_10">demo@gmail.com</span></a>
-                </li>
-              </ul>
-            </div>
-            <div class="form-group">
-              <textarea class="update_mail" placeholder="Your Email" rows="5" id="comment" name="Your Email"></textarea>
-              <div class="subscribe_bt">
-                <a href="#"><i class="fa fa-arrow-right" aria-hidden="true"></i></a>
-              </div>
-            </div>
+          </div>
+
+          <div class="col-lg-2 col-6 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li>
+                <a href="{% url 'website:index'%}">Home</a>
+              </li>
+              <li>
+                <a href="{% url 'website:about'%}">About us</a>
+              </li>
+              <li>
+                <a href="{% url 'website:contact'%}">Contact</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
+            <h4>Contact Us</h4>
+            <p>ABADAN</p>
+            <p>Brazil</p>
+            <p class="mt-4">
+              <strong>Phone:</strong> <span>+98 916...</span>
+            </p>
+            <p>
+              <strong>Email:</strong> <span>mehdi.mousavi.rad1@gmail.com</span>
+            </p>
           </div>
         </div>
       </div>
-    </div>
-    <!-- footer section end -->
-    <!-- Javascript files -->
-    <script src="{% static 'js/jquery.min.js' %}"></script>
-    <script src="{% static 'js/popper.min.js' %}"></script>
-    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
-    <script src="{% static 'js/jquery-3.0.0.min.js' %}"></script>
-    <script src="{% static 'js/plugin.js' %}"></script>
-    <!-- sidebar -->
-    <script src="{% static 'js/jquery.mCustomScrollbar.concat.min.js' %}"></script>
-    <script src="{% static 'js/custom.js' %}"></script>
+
+      <div class="container copyright text-center mt-4">
+        <p>
+          © <span>Copyright</span> <strong class="sitename">Cia</strong> <span>All Rights Reserved</span>
+        </p>
+        <div class="credits">
+          <!-- All the links in the footer should remain intact. -->
+          <!-- You can delete the links only if you've purchased the pro version. -->
+          <!-- Licensing information: https://bootstrapmade.com/license/ -->
+          <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
+          Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scroll Top -->
+    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+    <!-- Preloader -->
+    <div id="preloader"></div>
+
+    <!-- Vendor JS Files -->
+    <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
+    <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
+    <script src="{% static 'assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/purecounter/purecounter_vanilla.js' %}"></script>
+    <script src="{% static 'assets/vendor/imagesloaded/imagesloaded.pkgd.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+
+    <!-- Main JS File -->
+    <script src="{% static 'assets/js/main.js' %}"></script>
   </body>
 </html>
