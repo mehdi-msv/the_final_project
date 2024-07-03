@@ -1,4 +1,6 @@
 {% load static %}
+{% load account %}
+{% user_display user as user_display %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -44,7 +46,26 @@
           <!-- <img src="{% static 'assets/img/logo.png' %}" alt=""> -->
           <h1 class="sitename">Cia Cafe</h1><span>.</span>
         </a>
-
+        <div class="col-lg-6 col-sm-6 col-6 header-top-left">
+          <ul>
+            {% if request.user.is_authenticated%}
+            <li>
+              <a href="{% url 'account_login' %}?next={{request.get_full_path|urlencode}}">Logged In As {{user_display}}</a>
+            </li>
+            <li>
+              <a href="{% url 'account_logout' %}">Logout</a>
+            </li>
+            {% endif %}
+            {% if not request.user.is_authenticated%}
+            <li>
+              <a href="{% url 'account_login' %}?next={{request.get_full_path|urlencode}}">login</a>
+            </li>
+            <li>
+              <a href="{% url 'account_signup'%}">Sign Up</a>
+            </li>
+            {% endif %}
+          </ul>
+        </div>
         <nav id="navmenu" class="navmenu">
           <ul>
             <li>
@@ -144,3 +165,4 @@
     <script src="{% static 'assets/js/main.js' %}"></script>
   </body>
 </html>
+{% include 'messages.html'%}

@@ -18,7 +18,13 @@ from django.contrib import admin
 from django.urls import path,re_path,include
 from django.conf.urls.static import static
 from django.views.generic import TemplateView
+
+
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('website.urls')),
+    path('captcha/', include('captcha.urls')),
+    path('accounts/', include('allauth.urls')),
 ]
