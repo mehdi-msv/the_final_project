@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -91,6 +92,18 @@ DATABASES = {
     }
 }
 
+#allauth settings
+
+ACCOUNT_CHANGE_EMAIL = True
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_AUTHENTICATION_METHOD = "username_email"
+ACCOUNT_EMAIL_VERIFICATION = "none"
+ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'http'
+ACCOUNT_MAX_EMAIL_ADDRESSES = 2
+
+ACCOUNT_FORMS = {
+'signup': 'Cia.allauth_forms.CustomSignupForm',
+}
 
 
 AUTHENTICATION_BACKENDS = [
