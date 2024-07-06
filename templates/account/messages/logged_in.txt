@@ -1,0 +1,2 @@
+{% load sweetify_tags %}
+{% success_message request=request  message='Logged in successfully' %}

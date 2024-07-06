@@ -9,10 +9,10 @@ def contact_view(request):
         form = ContactForm(post)
         if form.is_valid():
             form.save()
-            sweetify.success(request,'your ticket submitted successfully')
+            sweetify.success(request,'Your message has been sent')
             return redirect('website:contact')
         else:
-            sweetify.error(request,'your ticket didnt submitted')
+            sweetify.error(request,'Your message was not sent')
             return redirect('website:contact')
     form = ContactForm()
     context = {'form': form}
@@ -22,10 +22,10 @@ def newsletter_view(request):
         form = NewsletterForm(request.POST)
         if form.is_valid():
             form.save()
-            sweetify.success(request,'Your message has been sent')
+            sweetify.success(request,'Thank you for subscribing to newsletter')
             return redirect('/')
         else:
-            sweetify.error(request,'Your message was not sent')
+            sweetify.error(request,'ERROR, Please try again')
             return redirect('/')
     form = NewsletterForm()
     context = {'form': form}

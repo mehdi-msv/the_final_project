@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-^#)w_t#g=%$wo32=&3^b*uu(56c1kw3y%n@l8qs_nt#c%m41ig
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 SWEETIFY_SWEETALERT_LIBRARY = 'sweetalert2'
@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'sweetify',
     'captcha',
     'website',
+    'blog',
 ]
 
 
@@ -91,6 +92,16 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+EMAIL_BACKEND ='django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_POST = 587
+EMAIL_HOST_USER = 'mehdimsv814@gmail.com'
+EMAIL_HOST_PASSWORD = 'kjiclosedvtyegef'
+DEAFULT_FROM_EMAIL = EMAIL_HOST_USER
+
+
+
 
 #allauth settings
 
@@ -99,8 +110,8 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_AUTHENTICATION_METHOD = "username_email"
 ACCOUNT_EMAIL_VERIFICATION = "none"
 ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'http'
-ACCOUNT_MAX_EMAIL_ADDRESSES = 2
-
+LOGIN_REDIRECT_URL = '/'
+ACCOUNT_LOGOUT_ON_GET = True
 ACCOUNT_FORMS = {
 'signup': 'Cia.allauth_forms.CustomSignupForm',
 }
