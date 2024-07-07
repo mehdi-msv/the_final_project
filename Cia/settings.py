@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+from decouple import config
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -24,9 +25,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-^#)w_t#g=%$wo32=&3^b*uu(56c1kw3y%n@l8qs_nt#c%m41ig'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = config(
+    "ALLOWED_HOSTS",
+    cast=lambda v: [s.strip() for s in v.split(",")],
+    default="*",
+)
 
 
 SWEETIFY_SWEETALERT_LIBRARY = 'sweetalert2'
@@ -35,6 +40,7 @@ SWEETIFY_SWEETALERT_LIBRARY = 'sweetalert2'
 SITE_ID = 1
 
 INSTALLED_APPS = [
+    'multi_captcha_admin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -47,6 +53,9 @@ INSTALLED_APPS = [
     'captcha',
     'website',
     'blog',
+    'compressor',
+    'rcssmin',
+    'rjsmin',
 ]
 
 
@@ -169,8 +178,27 @@ STATICFILES_DIRS = [
     BASE_DIR / 'static'
 ]
 
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    # other finders..
+    'compressor.finders.CompressorFinder',
+)
+
+
+COMINGSOON = config("COMINGSOON", cast=bool, default=False)
+
+
+COMPRESS_ENABLED = config("COMPRESS_ENABLED", cast=bool, default=True)
+COMPRESS_OFFLINE = config("COMPRESS_OFFLINE", cast=bool, default=True)
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+MULTI_CAPTCHA_ADMIN = {
+    'engine': 'simple-captcha',
+}

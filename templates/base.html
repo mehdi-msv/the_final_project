@@ -1,6 +1,7 @@
 {% load static %}
 {% load account %}
 {% user_display user as user_display %}
+{% load compress %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -21,22 +22,32 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet" />
 
     <!-- Vendor CSS Files -->
+    {% compress css %}
     <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" />
+    {% endcompress %}
+    {% compress css %}
     <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet" />
+    {% endcompress %}
+    {% compress css %}
     <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet" />
+    {% endcompress %}
+    {% compress css %}
     <link href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet" />
+    {% endcompress %}
+    {% compress css %}
     <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet" />
-
+    {% endcompress %}
     <!-- Main CSS File -->
+    {% compress css %}
     <link href="{% static 'assets/css/main.css' %}" rel="stylesheet" />
-
-    <!--   =======================================================
+    {% endcompress %}
+    <!--      =======================================================
   * Template Name: Append
   * Template URL: https://bootstrapmade.com/append-bootstrap-website-template/
   * Updated: Jun 29 2024 with Bootstrap v5.3.3
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
-  ========================================================   -->
+  ========================================================      -->
   </head>
   <body class="index-page">
     <header id="header" class="header d-flex align-items-center fixed-top">
@@ -48,21 +59,21 @@
         </a>
         <div class="col-lg-6 col-sm-6 col-6 header-top-left">
           <ul>
-            {% if request.user.is_authenticated%}
-            <li>
-              <a href="{% url 'account_login' %}?next={{request.get_full_path|urlencode}}">Logged In As {{user_display}}</a>
-            </li>
-            <li>
-              <a href="{% url 'account_logout' %}">Logout</a>
-            </li>
+            {% if request.user.is_authenticated %}
+              <li>
+                <a href="{% url 'account_login' %}?next={{ request.get_full_path|urlencode }}">Logged In As {{ user_display }}</a>
+              </li>
+              <li>
+                <a href="{% url 'account_logout' %}">Logout</a>
+              </li>
             {% endif %}
-            {% if not request.user.is_authenticated%}
-            <li>
-              <a href="{% url 'account_login' %}?next={{request.get_full_path|urlencode}}">login</a>
-            </li>
-            <li>
-              <a href="{% url 'account_signup'%}">Sign Up</a>
-            </li>
+            {% if not request.user.is_authenticated %}
+              <li>
+                <a href="{% url 'account_login' %}?next={{ request.get_full_path|urlencode }}">login</a>
+              </li>
+              <li>
+                <a href="{% url 'account_signup' %}">Sign Up</a>
+              </li>
             {% endif %}
           </ul>
         </div>
@@ -93,7 +104,7 @@
       <div class="container footer-top">
         <div class="row gy-4">
           <div class="col-lg-5 col-md-12 footer-about">
-            <a href="{% url 'website:index'%}" class="logo d-flex align-items-center"><span class="sitename">Cia Cafe</span></a>
+            <a href="{% url 'website:index' %}" class="logo d-flex align-items-center"><span class="sitename">Cia Cafe</span></a>
             <p>Enjoy a perfect cup made from high-quality beans, brewed fresh for every order.</p>
             <div class="social-links d-flex mt-4">
               <a href=""><i class="bi bi-twitter-x"></i></a>
@@ -107,13 +118,13 @@
             <h4>Useful Links</h4>
             <ul>
               <li>
-                <a href="{% url 'website:index'%}">Home</a>
+                <a href="{% url 'website:index' %}">Home</a>
               </li>
               <li>
-                <a href="{% url 'website:about'%}">About us</a>
+                <a href="{% url 'website:about' %}">About us</a>
               </li>
               <li>
-                <a href="{% url 'website:contact'%}">Contact</a>
+                <a href="{% url 'website:contact' %}">Contact</a>
               </li>
             </ul>
           </div>
@@ -152,17 +163,35 @@
     <div id="preloader"></div>
 
     <!-- Vendor JS Files -->
+    {% compress js %}
     <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    {% endcompress %}
+    {% compress js %}
     <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
+    {% endcompress %}
+    {% compress js %}
     <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
+    {% endcompress %}
+    {% compress js %}
     <script src="{% static 'assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
+    {% endcompress %}
+    {% compress js %}
     <script src="{% static 'assets/vendor/purecounter/purecounter_vanilla.js' %}"></script>
+    {% endcompress %}
+    {% compress js %}
     <script src="{% static 'assets/vendor/imagesloaded/imagesloaded.pkgd.min.js' %}"></script>
+    {% endcompress %}
+    {% compress js %}
     <script src="{% static 'assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+    {% endcompress %}
+    {% compress js %}
     <script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+    {% endcompress %}
 
     <!-- Main JS File -->
+    {% compress js %}
     <script src="{% static 'assets/js/main.js' %}"></script>
+    {% endcompress %}
   </body>
 </html>
-{% include 'messages.html'%}
+{% include 'messages.html' %}

@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import path,re_path,include
 from django.conf.urls.static import static
 from django.views.generic import TemplateView
-
+from Cia.settings import *
 
 
 
@@ -28,3 +28,16 @@ urlpatterns = [
     path('captcha/', include('captcha.urls')),
     path('account/',include('allauth.urls')),
 ]
+
+#  COMINGSOON
+if COMINGSOON:
+    urlpatterns.insert(
+            0, re_path(r"^", TemplateView.as_view(template_name="comingsoon.html"))
+        )
+
+
+
+handler400 = "Cia.error_views.error_400"     # bad request
+handler403 = "Cia.error_views.error_403"     # permission denied
+handler404 = "Cia.error_views.error_404"     # page not found
+handler500 = "Cia.error_views.error_500"     # server error
