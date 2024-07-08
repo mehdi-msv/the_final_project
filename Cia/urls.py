@@ -18,7 +18,13 @@ from django.contrib import admin
 from django.urls import path,re_path,include
 from django.conf.urls.static import static
 from django.views.generic import TemplateView
-from Cia.settings import *
+from Cia import settings
+from django.contrib.sitemaps.views import sitemap
+from website.sitemaps import StaticViewSitemap
+
+sitemaps = {
+    "static": StaticViewSitemap,
+}
 
 
 
@@ -27,10 +33,26 @@ urlpatterns = [
     path('', include('website.urls')),
     path('captcha/', include('captcha.urls')),
     path('account/',include('allauth.urls')),
+    path(
+        "sitemap.xml",
+        sitemap,
+        {"sitemaps": sitemaps},
+        name="django.contrib.sitemaps.views.sitemap",),
+    path('summernote/', include('django_summernote.urls')),
 ]
 
+
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL,document_root = settings.STATIC_ROOT)
+    urlpatterns += static(settings.MEDIA_URL,document_root = settings.MEDIA_ROOT)
+
+if settings.DEBUG:
+    urlpatterns += [  
+                    path("__debug__/", include("debug_toolbar.urls")),
+    ]
+
 #  COMINGSOON
-if COMINGSOON:
+if settings.COMINGSOON:
     urlpatterns.insert(
             0, re_path(r"^", TemplateView.as_view(template_name="comingsoon.html"))
         )

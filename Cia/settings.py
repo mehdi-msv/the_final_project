@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-^#)w_t#g=%$wo32=&3^b*uu(56c1kw3y%n@l8qs_nt#c%m41ig'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = config(
     "ALLOWED_HOSTS",
@@ -37,8 +37,6 @@ ALLOWED_HOSTS = config(
 SWEETIFY_SWEETALERT_LIBRARY = 'sweetalert2'
 # Application definition
 
-SITE_ID = 1
-
 INSTALLED_APPS = [
     'multi_captcha_admin',
     'django.contrib.admin',
@@ -47,18 +45,27 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'django.contrib.sitemaps',
+    'django.contrib.humanize',
+    'captcha',
     'allauth',
     'allauth.account',
+    'django_summernote',
     'sweetify',
-    'captcha',
     'website',
     'blog',
     'compressor',
     'rcssmin',
     'rjsmin',
+    'robots',
+    'taggit',
+    "debug_toolbar",
+    
+    
 ]
 
-
+SITE_ID = 2
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -70,6 +77,11 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     "allauth.account.middleware.AccountMiddleware",
 ]
+
+if DEBUG:
+    MIDDLEWARE += [
+        "debug_toolbar.middleware.DebugToolbarMiddleware",
+    ]
 
 ROOT_URLCONF = 'Cia.urls'
 
@@ -101,6 +113,7 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
 EMAIL_BACKEND ='django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
@@ -110,7 +123,7 @@ EMAIL_HOST_PASSWORD = 'kjiclosedvtyegef'
 DEAFULT_FROM_EMAIL = EMAIL_HOST_USER
 
 
-
+ROBOTS_USE_SCHEME_IN_HOST = False
 
 #allauth settings
 
@@ -202,3 +215,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MULTI_CAPTCHA_ADMIN = {
     'engine': 'simple-captcha',
 }
+if DEBUG:
+    INTERNAL_IPS = [
+        # ...
+        "127.0.0.1",
+        # ...
+    ]
