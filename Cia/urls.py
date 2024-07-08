@@ -21,9 +21,10 @@ from django.views.generic import TemplateView
 from Cia import settings
 from django.contrib.sitemaps.views import sitemap
 from website.sitemaps import StaticViewSitemap
-
+from blog.sitemaps import BlogSitemap
 sitemaps = {
     "static": StaticViewSitemap,
+    "blog": BlogSitemap,
 }
 
 
@@ -39,6 +40,8 @@ urlpatterns = [
         {"sitemaps": sitemaps},
         name="django.contrib.sitemaps.views.sitemap",),
     path('summernote/', include('django_summernote.urls')),
+    path('blog/', include('blog.urls')),
+    re_path(r'^robots\.txt', include('robots.urls')),
 ]
 
 

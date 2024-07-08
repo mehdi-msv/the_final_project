@@ -122,8 +122,9 @@ EMAIL_HOST_USER = 'mehdimsv814@gmail.com'
 EMAIL_HOST_PASSWORD = 'kjiclosedvtyegef'
 DEAFULT_FROM_EMAIL = EMAIL_HOST_USER
 
-
-ROBOTS_USE_SCHEME_IN_HOST = False
+# robots
+ROBOTS_USE_SCHEME_IN_HOST = True
+ROBOTS_USE_SITEMAP = True
 
 #allauth settings
 
