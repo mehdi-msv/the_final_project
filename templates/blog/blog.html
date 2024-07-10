@@ -22,7 +22,7 @@
         <div class="container">
           <ol>
             <li>
-              <a href="index.html">Home</a>
+              <a href="{% url 'website:index' %}">Home</a>
             </li>
             <li class="current">Blog</li>
           </ol>
@@ -32,83 +32,80 @@
     <!-- End Page Title -->
 
     <!-- Blog Posts Section -->
-    {% for post in posts %}
     <section id="blog-posts" class="blog-posts section">
       <div class="container">
         <div class="row gy-4">
-          <div class="col-lg-4">
-            <article>
-              <div class="post-img">
-                <img src="{{post.image.url}}" alt="" class="img-fluid" />
-              </div>
-              {% for cat in post.category.all %}
-              <a href="{% url 'blog:category' cat_name=cat.name%}" class="post-category">{{cat.name}}</a>{% if not forloop.last%},{% endif %}
-              {% endfor %}
-              <h2 class="title"><a href="{%url 'blog:single' pid=post.id%}">{{post.title}}</a></h2>
-              <p class="mb-0">{{post.content|truncatewords:30|safe}}</p>
-              <a href="{%url 'blog:single' pid=post.id%}" class="text-align">View More</a>
-              <div class="d-flex align-items-center">
-                <div class="post-meta">
-                  <a href="{% url 'blog:author' author_user=post.author.username%}" class="post-author">{{post.author.get_full_name}}</a>
-                  <p class="post-date">
-                    <time datetime="2022-01-01">{{post.pub_date|naturalday}}</time>
-                  </p>
+          {% for post in posts %}
+            <div class="col-lg-4">
+              <article>
+                <div class="post-img">
+                  <img src="{{ post.image.url }}" alt="" class="img-fluid" />
                 </div>
+                {% for cat in post.category.all %}
+                  <a href="{% url 'blog:category' cat_name=cat.name %}" class="post-category">{{ cat.name }}</a>{% if not forloop.last %},{% endif %}
+                {% endfor %}
+                <h2 class="title"><a href="{% url 'blog:single' pid=post.id %}">{{ post.title }}</a></h2>
+                <p class="mb-0">{{ post.content|truncatewords:30|safe }}</p>
+                <a href="{% url 'blog:single' pid=post.id %}" class="text-align">View More</a>
+                <div class="d-flex align-items-center">
+                  <div class="post-meta">
+                    <a href="{% url 'blog:author' author_user=post.author.username %}" class="post-author">{{ post.author.get_full_name }}</a>
+                    <p class="post-date">
+                      <time datetime="2022-01-01">{{ post.pub_date|naturalday }}</time>
+                    </p>
+                  </div>
+                </div>
+              </article>
+            </div>
+            <!-- End post list item -->
+          {% endfor %}
+
+          <!-- /Blog Posts Section -->
+
+          <!-- Blog Pagination Section -->
+          <section id="blog-pagination" class="blog-pagination section">
+            <div class="container">
+              <div class="d-flex justify-content-center">
+                <ul>
+                  {% if posts.has_previous %}
+                    <li>
+                      <a href="?page={{ posts.previous_page_number }}"><i class="bi bi-chevron-left"></i></a>
+                    </li>
+                  {% endif %}
+                  {% for page in posts.paginator.page_range %}
+                    {% if posts.number == page %}
+                      <li>
+                        <a href="?page={{ page }}" class="active">{{ page }}</a>
+                      </li>
+                    {% else %}
+                      <li>
+                        <a href="?page={{ page }}">{{ page }}</a>
+                      </li>
+                    {% endif %}
+                  {% endfor %}
+                  {% if post.has_next %}
+                    <li>
+                      <a href="?page={{ page }}"><i class="bi bi-chevron-right"></i></a>
+                    </li>
+                  {% endif %}
+                </ul>
               </div>
-            </article>
-          </div>
-          <!-- End post list item -->
-        </div>
-      </div>
-    </section>
-    {% endfor %}
-    <!-- /Blog Posts Section -->
+            </div>
+          </section>
+          <!-- /Blog Pagination Section -->
+          <div class="col-lg-4 sidebar">
+            <div class="widgets-container">
+              {% include 'blog/blog_search.html' %}
 
-    <!-- Blog Pagination Section -->
-    <section id="blog-pagination" class="blog-pagination section">
-      <div class="container">
-        <div class="d-flex justify-content-center">
-          <ul>
-            {% if posts.has_previous %}
-            <li>
-              <a href="?page={{posts.previous_page_number}}"><i class="bi bi-chevron-left"></i></a>
-            </li>
-            {% endif %}
-            {% for page in posts.paginator.page_range %}
-              {% if posts.number == page %}
-              <li>
-              <a href="?page={{page}}" class="active">{{page}}</a>
-              </li>
-              {% else %}
-              <li>
-                <a href="?page={{page}}" >{{page}}</a>
-              </li>
-              {% endif %}
-            {% endfor %}
-              {% if post.has_next %}
-              <li>
-                <a href="?page={{page}}"><i class="bi bi-chevron-right"></i></a>
-              </li>
-              {% endif %}
-          </ul>
-        </div>
-      </div>
-    </section>
-    <!-- /Blog Pagination Section -->
-    <div class="container">
-      <div class="row d-flex justify-content-right text-center">
-        <div class="col-lg-4 sidebar">
-          <div class="widgets-container">
-            {% include "blog/blog_search.html" %}
+              {% blog_tags %}
 
-            {% include "blog/blog_tags.html" %}
+              {% postcategories %}
 
-            {% include "blog/blog_cat.html" %}
-
-            {% include "blog/blog_recent.html" %}
+              {% blog_latest %}
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   </main>
 {% endblock %}

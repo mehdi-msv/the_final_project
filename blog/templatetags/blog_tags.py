@@ -19,12 +19,37 @@ def blog_latest(args=3):
     # Filter the posts based on status and published date
     posts = Post.objects.filter(
         status='published',
-        published_date__lte=timezone.now()
+        pub_date__lte=timezone.now()
     ).order_by('-pub_date')[:args]
 
     # Return the dictionary of posts
     return {'posts': posts}
 
+
+@register.inclusion_tag('blog/blog_tags.html')
+def blog_tags():
+    """
+    This function returns a dictionary of the number of posts in each tag.
+
+    Returns:
+        dict: A dictionary where the keys are the tag names and the values
+              are the number of posts in each tag.
+    """
+    # Get all published posts
+    posts = Post.objects.filter(status='published')
+
+    # Get all tags
+    tags = Tags.objects.all()
+
+    # Create a dictionary to store the number of posts in each tag
+    tag_dict = {}
+
+    # Iterate over each tag and count the number of posts in that tag
+    for name in tags:
+        tag_dict[name] = posts.filter(tags=name).count()
+
+    # Return the dictionary of tag counts
+    return {'tags': tag_dict}
 
 
 @register.inclusion_tag('blog/blog_cat.html')
@@ -52,27 +77,6 @@ def postcategories():
     # Return the dictionary of category counts
     return {'categories': cat_dict}
 
-
-
-@register.inclusion_tag('website/latest_posts.html')
-def latest_posts(args=6):
-    """
-    This function returns a dictionary of the latest published posts.
-
-    Args:
-        args (int): The number of posts to return.
-
-    Returns:
-        dict: A dictionary containing the latest published posts.
-    """
-    # Filter the posts based on status, published date, and order them by published date in descending order
-    posts = Post.objects.filter(
-        status='published',
-        published_date__lte=timezone.now()
-    ).order_by('-pub_date')[:args]
-
-    # Return the dictionary of posts
-    return {'posts': posts}
 
 
 

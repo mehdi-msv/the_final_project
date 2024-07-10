@@ -32,10 +32,10 @@ def blog_view(request, **kwargs):
     if kwargs.get('cat_name'):
         posts = posts.filter(category__name=kwargs['cat_name'])
     if kwargs.get('tag_name'):
-        posts = posts.filter(tags__name__in=kwargs['tag_name'])
+        posts = posts.filter(tags__name=kwargs['tag_name'])
     
     # Paginate the posts
-    paginator = Paginator(posts, 4)
+    paginator = Paginator(posts, 6)
     page_number = request.GET.get('page')
     
     try:

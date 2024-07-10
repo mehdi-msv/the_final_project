@@ -1,18 +1,42 @@
-<div class="col-lg-4 sidebar">
-  <div class="widgets-container">
-    <!-- Recent Posts Widget -->
-    <div class="recent-posts-widget widget-item">
-      <h3 class="widget-title">Recent Posts</h3>
-
-      <div class="post-item">
-        <img src="assets/img/blog/blog-recent-1.jpg" alt="" class="flex-shrink-0" />
-        <div>
-          <h4><a href="blog-details.html">Nihil blanditiis at in nihil autem</a></h4>
-          <time datetime="2020-01-01">Jan 1, 2020</time>
-        </div>
-      </div>
-      <!-- End recent post item -->
-    </div>
-    <!-- /Recent Posts Widget -->
+{% load static %}
+{%load humanize%}
+<!-- Recent Posts Section -->
+<section id="recent-posts" class="recent-posts section">
+  <!-- Section Title -->
+  <div class="container section-title" data-aos="fade-up">
+    <h2>Recent Posts</h2>
+    <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
   </div>
-</div>
+  <!-- End Section Title -->
+
+  <div class="container">
+    <div class="row gy-4">
+      {% for post in posts %}
+        <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+          <article>
+            <div class="post-img">
+              <img src="{{ post.image.url }}" alt="" class="img-fluid" />
+            </div>
+            {% for cat in post.category.all %}
+              <a class="post-category">{{ cat.name }}</a>
+              {% if not forloop.last %},{% endif %}
+            {% endfor %}
+            <h2 class="title"><a href="{% url 'blog:single' pid=post.id %}">{{ post.title }}</a></h2>
+
+            <div class="d-flex align-items-center">
+              <div class="post-meta">
+                <p class="post-author">{{ post.author.get_full_name }}</p>
+                <p class="post-date">
+                  <time datetime="2022-01-01">{{ post.pub_date|naturalday }}</time>
+                </p>
+              </div>
+            </div>
+          </article>
+        </div>
+      {% endfor %}
+      <!-- End post list item -->
+    </div>
+    <!-- End recent posts list -->
+  </div>
+</section>
+<!-- /Recent Posts Section -->
