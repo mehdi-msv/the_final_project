@@ -2,7 +2,6 @@
 {% load static %}
 {% load humanize %}
 {% load blog_tags %}
-{% load static %}
 <!DOCTYPE html>
 {% block content %}
   <main class="main">
@@ -34,37 +33,40 @@
     <!-- Blog Posts Section -->
     <div class="row" style="margin-left: 0px;">
       <section id="blog-posts" class="col-lg-8 blog-posts section">
+
         <div class="container">
           <div class="row gy-4">
+
             {% for post in posts %}
+
               <div class="col-lg-4">
                 <article>
+                  
                   <div class="post-img">
-                    <img src="{{ post.image.url }}" alt="" class="img-fluid" />
+                    <img style="height:200px;max-width:280px;width: expression(this.width > 500 ? 500: true);" src="{{ post.image.url }}" alt="" class="img-fluid" />
                   </div>
                   {% for cat in post.category.all %}
                     <a href="{% url 'blog:category' cat_name=cat.name %}" class="post-category">{{ cat.name }}</a>{% if not forloop.last %},{% endif %}
                   {% endfor %}
                   <h2 class="title">
                     <a href="{% url 'blog:single' pid=post.id %}">{{ post.title }}</a>
-                    <p class="mb-0">{{ post.content|truncatewords:4|safe }}</p>
                   </h2>
-
+                  <p >{{ post.content|truncatewords_html:10|safe }}</p>
                   <div class="d-flex align-items-center">
                     <img src="{{post.profile.url}}" alt="" class="img-fluid post-author-img flex-shrink-0" />
                     <div class="post-meta">
-                      <p class="post-author">{{post.author}}</p>
+                      <a href="{% url 'blog:author' author_user=post.author %}" class="post-author">{{post.author}}</a>
                       <p class="post-date">
                         <time datetime="2022-01-01">{{post.pub_date|naturalday}}</time>
-                      </p>
-                    </div>
+                      </p>                 
+                  </div>
                   </div>
                   <div class="header-card">
-                    <p class="view">
-                      <i class="bi bi-eye">{{post.counted_views}}</i>
-                    </p> <!-- view post -->
+                    <p class="view"><i class="bi bi-eye"> {{post.counted_views}}</i></p> <!-- view post -->
                     <a href="{% url 'blog:single' pid=post.id %}" class="view-more">view more...</a> <!-- view more -->
+
                   </div>
+
                 </article>
               </div>
               <!-- End post list item -->

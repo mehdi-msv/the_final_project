@@ -36,9 +36,6 @@ def blog_tags():
         dict: A dictionary where the keys are the tag names and the values
               are the number of posts in each tag.
     """
-    # Get all published posts
-    posts = Post.objects.filter(status='published')
-
     # Get all tags
     tags = Tag.objects.all()
     # Create a dictionary to store the number of posts in each tag
@@ -75,23 +72,3 @@ def postcategories():
 
     # Return the dictionary of category counts
     return {'categories': cat_dict}
-
-
-
-
-@register.simple_tag(name='comments_count')
-def get_comments_count(post_id):
-    """
-    This function returns the count of approved comments for a given post.
-
-    Args:
-        post_id (int): The ID of the post.
-
-    Returns:
-        int: The count of approved comments for the post.
-    """
-    # Filter comments based on post ID and approved status
-    comments = Comment.objects.filter(post_id=post_id, approved=True)
-
-    # Return the count of comments
-    return comments.count()

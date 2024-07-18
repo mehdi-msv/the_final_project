@@ -2258,7 +2258,7 @@ section,
   background-color: var(--surface-color);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
   padding: 30px;
-  height: 100%;
+  height: 550px;
   border-radius: 10px;
   overflow: hidden;
 }
@@ -2285,6 +2285,8 @@ section,
 .blog-posts .title a {
   color: var(--heading-color);
   transition: 0.3s;
+  line-height: 1;
+  font-size: 17px;
 }
 
 .blog-posts .title a:hover {
@@ -2862,4 +2864,32 @@ section,
   padding-left: 5px;
   color: color-mix(in srgb, var(--default-color), transparent 60%);
   font-size: 14px;
+}
+.next-prev{
+  margin-bottom: 14px;
+  margin-left: 4px;
+}
+.next , .prev{
+  border: 1px solid black;
+  margin-left: 10px;
+  padding: 5px 8px;
+  border-radius: 3px;
+}
+.view{
+  margin-top: 20px;
+  margin-left: -15px;
+  font-size: 18px;
+}
+.header-card{
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  position: absolute;
+  bottom: 0;
+}
+.view-more{
+  margin-top: 20px;
+  margin-left: 11px;
+}
+.col-lg-4{
+  position: relative;
 }

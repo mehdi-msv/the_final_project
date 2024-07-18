@@ -2258,7 +2258,7 @@ section,
   background-color: var(--surface-color);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
   padding: 30px;
-  height: 440px;
+  height: 550px;
   border-radius: 10px;
   overflow: hidden;
 }
@@ -2883,8 +2883,13 @@ section,
 .header-card{
   display: grid;
   grid-template-columns: repeat(2,1fr);
+  position: absolute;
+  bottom: 0;
 }
 .view-more{
   margin-top: 20px;
   margin-left: 11px;
+}
+.col-lg-4{
+  position: relative;
 }
