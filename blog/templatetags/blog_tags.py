@@ -1,6 +1,7 @@
 from django import template
 from blog.models import *
 from django.utils import timezone
+from taggit.models import Tag
 register = template.Library()
 
 
@@ -39,17 +40,16 @@ def blog_tags():
     posts = Post.objects.filter(status='published')
 
     # Get all tags
-    tags = Tags.objects.all()
-
+    tags = Tag.objects.all()
     # Create a dictionary to store the number of posts in each tag
-    tag_dict = {}
+    tag_list = []
 
     # Iterate over each tag and count the number of posts in that tag
     for name in tags:
-        tag_dict[name] = posts.filter(tags=name).count()
+        tag_list.append(name)
 
     # Return the dictionary of tag counts
-    return {'tags': tag_dict}
+    return {'tags': tag_list}
 
 
 @register.inclusion_tag('blog/blog_cat.html')
@@ -66,7 +66,6 @@ def postcategories():
 
     # Get all categories
     categories = Categories.objects.all()
-
     # Create a dictionary to store the number of posts in each category
     cat_dict = {}
 

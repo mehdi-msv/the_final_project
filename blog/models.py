@@ -25,6 +25,7 @@ class Post(models.Model):
     content = models.TextField()
     author = models.ForeignKey(User,on_delete=models.SET_NULL, null = True)
     image = models.ImageField(upload_to='blog/',default='blog/blog-img2.png')
+    profile = models.ImageField(upload_to='blog/profile/',default='blog/profile/profile.jpg')
     tags = TaggableManager()
     status_type = models.TextChoices("status_type",'published unpublished')
     status = models.CharField(blank=True, choices=status_type.choices, max_length=15)

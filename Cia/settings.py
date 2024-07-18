@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'django_summernote',
+    'taggit',
     'sweetify',
     'website',
     'blog',
@@ -59,7 +60,6 @@ INSTALLED_APPS = [
     'rcssmin',
     'rjsmin',
     'robots',
-    'taggit',
     "debug_toolbar",
     
     
