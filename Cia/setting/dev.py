@@ -1,19 +1,6 @@
 from Cia.settings import *
 from decouple import config
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('SECRET_KEY',default='test')
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG',cast=bool,default=True)
-
-ALLOWED_HOSTS = config(
-    "ALLOWED_HOSTS",
-    cast=lambda v: [s.strip() for s in v.split(",")],
-    default="*",
-)
 
 # Application definition
 
@@ -51,9 +38,6 @@ if DEBUG:
     ]
 
 
-#site settings
-SITE_ID = config('SITE_ID', cast=int, default=2)
-
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
@@ -64,16 +48,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
-
-STATIC_ROOT = BASE_DIR / 'staticfiles'
-MEDIA_ROOT = BASE_DIR / 'media'
-
-STATICFILES_DIRS = [
-    BASE_DIR / 'static'
-]
-
-
 
 
 EMAIL_BACKEND = config('EMAIL_BACKEND_DEV', default="django.core.mail.backends.console.EmailBackend")
