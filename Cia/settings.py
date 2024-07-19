@@ -21,51 +21,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-^#)w_t#g=%$wo32=&3^b*uu(56c1kw3y%n@l8qs_nt#c%m41ig'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = config(
-    "ALLOWED_HOSTS",
-    cast=lambda v: [s.strip() for s in v.split(",")],
-    default="*",
-)
 
 
-SWEETIFY_SWEETALERT_LIBRARY = 'sweetalert2'
-# Application definition
 
-INSTALLED_APPS = [
-    'multi_captcha_admin',
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'django.contrib.sites',
-    'django.contrib.sitemaps',
-    'django.contrib.humanize',
-    'captcha',
-    'allauth',
-    'allauth.account',
-    'django_summernote',
-    'taggit',
-    'sweetify',
-    'website',
-    'blog',
-    'compressor',
-    'rcssmin',
-    'rjsmin',
-    'robots',
-    "debug_toolbar",
-    
-    
-]
 
-SITE_ID = 2
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -78,10 +38,7 @@ MIDDLEWARE = [
     "allauth.account.middleware.AccountMiddleware",
 ]
 
-if DEBUG:
-    MIDDLEWARE += [
-        "debug_toolbar.middleware.DebugToolbarMiddleware",
-    ]
+
 
 ROOT_URLCONF = 'Cia.urls'
 
@@ -104,38 +61,22 @@ TEMPLATES = [
 WSGI_APPLICATION = 'Cia.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
-
-EMAIL_BACKEND ='django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_USE_TLS = True
-EMAIL_POST = 587
-EMAIL_HOST_USER = 'mehdimsv814@gmail.com'
-EMAIL_HOST_PASSWORD = 'kjiclosedvtyegef'
-DEAFULT_FROM_EMAIL = EMAIL_HOST_USER
 
 # robots
-ROBOTS_USE_SCHEME_IN_HOST = True
-ROBOTS_USE_SITEMAP = True
+ROBOTS_USE_SCHEME_IN_HOST = config('ROBOTS_USE_SCHEME_IN_HOST',cast=bool ,default=False)
+ROBOTS_USE_SITEMAP = config('ROBOTS_USE_SITEMAP',cast=bool ,default=False)
 
 #allauth settings
 
-ACCOUNT_CHANGE_EMAIL = True
-ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_AUTHENTICATION_METHOD = "username_email"
-ACCOUNT_EMAIL_VERIFICATION = "none"
-ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'http'
-LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL = '/'
-ACCOUNT_LOGOUT_ON_GET = True
+ACCOUNT_CHANGE_EMAIL = config('ACCOUNT_CHANGE_EMAIL',cast=bool,default=True)
+ACCOUNT_EMAIL_REQUIRED = config('ACCOUNT_EMAIL_REQUIRED',cast=bool,default=True)
+ACCOUNT_AUTHENTICATION_METHOD = config('ACCOUNT_AUTHENTICATION_METHOD',default="username_email")
+ACCOUNT_EMAIL_VERIFICATION = config('ACCOUNT_EMAIL_VERIFICATION',default="none")
+ACCOUNT_DEFAULT_HTTP_PROTOCOL = config('ACCOUNT_DEFAULT_HTTP_PROTOCOL',default='http')
+LOGIN_REDIRECT_URL = config('LOGIN_REDIRECT_URL',default='/')
+LOGOUT_REDIRECT_URL = config('LOGOUT_REDIRECT_URL',default='/')
+ACCOUNT_LOGOUT_ON_GET = config('ACCOUNT_LOGOUT_ON_GET',cast=bool,default=True)
 ACCOUNT_FORMS = {
 'signup': 'Cia.allauth_forms.CustomSignupForm',
 }
@@ -173,7 +114,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = config("TIME_ZONE", default="UTC")
 
 USE_I18N = True
 
@@ -186,12 +127,6 @@ USE_TZ = True
 STATIC_URL = 'static/'
 MEDIA_URL = '/media/'
 
-STATIC_ROOT = BASE_DIR / 'staticfiles'
-MEDIA_ROOT = BASE_DIR / 'media'
-
-STATICFILES_DIRS = [
-    BASE_DIR / 'static'
-]
 
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
@@ -217,9 +152,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MULTI_CAPTCHA_ADMIN = {
     'engine': 'simple-captcha',
 }
-if DEBUG:
-    INTERNAL_IPS = [
-        # ...
-        "127.0.0.1",
-        # ...
-    ]
+
+SWEETIFY_SWEETALERT_LIBRARY = 'sweetalert2'
