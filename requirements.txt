@@ -13,6 +13,7 @@ django-taggit==5.0.1
 django_compressor==4.5
 humanize==4.10.0
 pillow==10.3.0
+psycopg2-binary==2.9.9
 python-decouple==3.8
 rcssmin==1.1.2
 rjsmin==1.2.2
