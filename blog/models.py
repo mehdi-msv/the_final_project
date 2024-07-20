@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from taggit.managers import TaggableManager
 from django.urls import reverse
+from ckeditor.fields import RichTextField
 # Create your models here.
 
 
@@ -22,7 +23,7 @@ class Categories(models.Model):
     
 class Post(models.Model):
     title = models.CharField(max_length=200)
-    content = models.TextField()
+    content = RichTextField()
     author = models.ForeignKey(User,on_delete=models.SET_NULL, null = True)
     image = models.ImageField(upload_to='blog/',default='blog/blog-img2.png')
     profile = models.ImageField(upload_to='blog/profile/',default='blog/profile/profile.jpg')

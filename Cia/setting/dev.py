@@ -18,7 +18,7 @@ INSTALLED_APPS = [
     'captcha',
     'allauth',
     'allauth.account',
-    'django_summernote',
+    'ckeditor',
     'taggit',
     'sweetify',
     'website',

@@ -172,3 +172,12 @@ MULTI_CAPTCHA_ADMIN = {
 }
 
 SWEETIFY_SWEETALERT_LIBRARY = 'sweetalert2'
+
+# CkEritor settings
+CKEDITOR_BASEPATH = "/static/ckeditor/ckeditor/"
+CKEDITOR_UPLOAD_PATH = "media/upload/ckeditor"
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full',
+    },
+}
